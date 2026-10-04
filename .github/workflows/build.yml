@@ -1,0 +1,40 @@
+name: Build Windows app
+
+# Rebuilds RigKit.exe when the app code changes. Content edits (content/**)
+# do not need a rebuild: the app reads them live from this repository.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "app/**"
+      - "package.json"
+      - ".github/workflows/build.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install
+        run: npm install
+
+      - name: Build portable exe
+        run: npx electron-builder --win portable --publish never
+
+      - name: Publish to the "latest" release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Rig Kit (latest)
+          body: Download **RigKit.exe** below. Content updates appear automatically; you only need a new exe when the app itself changes.
+          files: dist/RigKit.exe
+          make_latest: true

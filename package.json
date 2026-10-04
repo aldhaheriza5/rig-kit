@@ -1,0 +1,25 @@
+{
+  "name": "rig-kit",
+  "version": "1.0.0",
+  "description": "Rig Kit: device notes, files and links",
+  "author": "aldhaheriza5",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "app/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win portable --publish never"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.aldhaheriza5.rigkit",
+    "productName": "Rig Kit",
+    "files": ["app/**/*", "package.json"],
+    "directories": { "output": "dist" },
+    "win": { "target": "portable" },
+    "portable": { "artifactName": "RigKit.exe" }
+  }
+}

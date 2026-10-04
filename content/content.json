@@ -1,0 +1,22 @@
+{
+  "groups": [
+    { "id": "dma", "label": "DMA" },
+    { "id": "fuser", "label": "4K DC505 Fuser" },
+    { "id": "ferrum", "label": "Ferrum" }
+  ],
+  "pages": [
+    {
+      "id": "dc505-hardware",
+      "group": "fuser",
+      "title": "DC505 Hardware Setup & Controls",
+      "icon": "chip",
+      "notes": "",
+      "files": [],
+      "links": [
+        { "name": "DC505 Hardware Setup & Controls guide", "url": "https://docs.ducks-services.com/dma/4k-dc505-fuser/dc505-hardware-setup-and-controls" }
+      ]
+    },
+    { "id": "dc505-edid", "group": "fuser", "title": "DC505 EDID Injection", "icon": "code", "notes": "", "files": [], "links": [] },
+    { "id": "dc505-capture", "group": "fuser", "title": "DC505 Capture Card", "icon": "video", "notes": "", "files": [], "links": [] }
+  ]
+}
