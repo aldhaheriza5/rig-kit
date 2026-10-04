@@ -602,6 +602,14 @@ async function deleteFile(p,f){
   p.files.splice(p.files.indexOf(f),1); dirty=true; await publish("Remove "+f.name); renderPage();
 }
 
+
+/* In the desktop app, open web links in the person's normal browser */
+document.addEventListener("click",e=>{
+  const a=e.target.closest&&e.target.closest("a[href]"); if(!a) return;
+  const h=a.getAttribute("href");
+  if(/^https?:\/\//i.test(h) && window.__TAURI__ && window.__TAURI__.opener){ e.preventDefault(); window.__TAURI__.opener.openUrl(h); }
+});
+
 $("menuBtn").onclick=()=>$("side").classList.toggle("collapsed");
 
 (async function start(){

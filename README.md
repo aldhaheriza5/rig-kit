@@ -4,7 +4,7 @@ A small Windows app with notes, files and links, grouped into sections and pages
 
 ## Download
 
-Get **RigKit.exe** from the [latest release](https://github.com/aldhaheriza5/rig-kit/releases/tag/latest). It's portable: no install, just run it.
+Get **RigKit.exe** from the [latest release](https://github.com/aldhaheriza5/rig-kit/releases/tag/latest). It's a single small file (Windows 10/11): no install, just run it.
 
 Windows may show "Windows protected your PC" because the app isn't code-signed. Click **More info → Run anyway**.
 
@@ -12,7 +12,7 @@ Windows may show "Windows protected your PC" because the app isn't code-signed. 
 
 - The app reads `content/content.json` and `content/files/` from this repository every time it opens or you click **Refresh**.
 - Content changes show up for everyone without a new exe.
-- A new exe is built automatically (GitHub Actions → Releases) only when the files in `app/` change.
+- A new exe is built automatically (GitHub Actions → Releases) only when `app/` or `src-tauri/` change. It's built with Tauri, which uses the WebView2 engine already in Windows.
 
 ## Admin mode
 

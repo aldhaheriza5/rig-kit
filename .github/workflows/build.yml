@@ -7,7 +7,7 @@ on:
     branches: [main]
     paths:
       - "app/**"
-      - "package.json"
+      - "src-tauri/**"
       - ".github/workflows/build.yml"
   workflow_dispatch:
 
@@ -24,17 +24,26 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install
-        run: npm install
+      - uses: dtolnay/rust-toolchain@stable
 
-      - name: Build portable exe
-        run: npx electron-builder --win portable --publish never
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+
+      - name: Build exe
+        run: npx --yes @tauri-apps/cli@^2 build --no-bundle
+
+      - name: Rename
+        shell: bash
+        run: |
+          cp src-tauri/target/release/rig-kit.exe RigKit.exe
+          ls -la RigKit.exe
 
       - name: Publish to the "latest" release
         uses: softprops/action-gh-release@v2
         with:
           tag_name: latest
           name: Rig Kit (latest)
-          body: Download **RigKit.exe** below. Content updates appear automatically; you only need a new exe when the app itself changes.
-          files: dist/RigKit.exe
+          body: Download **RigKit.exe** below and run it. No install needed (Windows 10/11). Content updates appear automatically; you only need a new exe when the app itself changes.
+          files: RigKit.exe
           make_latest: true
